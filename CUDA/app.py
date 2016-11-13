@@ -4,7 +4,7 @@ import numpy
 
 from pycuda.compiler import SourceModule
 
-mod = SourceModule(file here)
+mod = SourceModule(open("perceptron.cu").read())
 
 supervised_set = [
 	[array([0,0,1]),1],
@@ -13,7 +13,10 @@ supervised_set = [
 	[array([1,1,1]),1]
 ]
 
-train = mod.get_function("train")
+perceptron = mod.get_function("perceptron")
 
-weights = numpy.random.randn(400).astype(numpy.float32)
+weights = numpy.random.randn(3).astype(numpy.float32)
 
+end_weights = numpy.zeros_like(weights)
+
+perceptron()

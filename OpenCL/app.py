@@ -29,14 +29,7 @@ if __name__ == "__main__":
     ## Step #4. Create the accelerator program from source code.
     ## Step #5. Build the program.
     ## Step #6. Create one or more kernels from the program functions.
-    program = cl.Program(context, """
-        __kernel void matrix_dot_vector(__global const float4 *matrix,
-        __global const float4 *vector, __global float *result)
-        {
-          int gid = get_global_id(0);
-          result[gid] = dot(matrix[gid], vector[0]);
-        }
-        """).build()
+    program = cl.Program(context,file here).build()
      
     ## Step #7. Create a command queue for the target device.
     queue = cl.CommandQueue(context)
